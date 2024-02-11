@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "woodworker123d"
+version = "2024.01.01"
+# dynamic = ["version"]
+description = "A build123d tool set and library to create wood based models"
+authors = ["andreas felix haeberle <felix.haeberle@icloud.com>"]
+license = "42sol-MIT"
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+build123d = "^0.3.0"
+partcad = "^0.3.84"
+toml = "^0.10.2"
+
+
+[build-system]
+
+requires = [
+    "setuptools>=45",
+    "wheel",
+    "setuptools_scm[toml]>=6.2",
+    "poetry>=1.7.1"
+]
