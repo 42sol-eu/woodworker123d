@@ -8,6 +8,7 @@ logging.basicConfig(level=DEBUG)
 from dataclasses import dataclass
 #----
 from .common import UnitEnum, get_base_unit
+from .calculation import evaluate_name, evaluate_count
 
 # [Classes]
 
@@ -69,37 +70,5 @@ class MaterialsList(list):
         
 # [Functions]
 
-def evaluate_name(value: str) -> bool:
-    """evaluate if a name is valid
 
-    Args:
-        value (str): name to evaluate
-
-    Returns:
-        bool: True if the name is valid
-    """
-    if not value:
-        raise ValueError(f"{value=} must not be empty")
-    
-    if type(value) != str:
-        raise ValueError(f"{value=} must be a string")
-    
-    if len(value) < 1:
-        raise ValueError(f"{value=} must be >= 1 characters")
-
-    return True
-        
-def evaluate_count(value: int) -> bool:
-    """evaluate if a count is valid
-
-    Args:
-        value (int): count to evaluate
-
-    Returns:
-        bool: True if the count is valid
-    """
-    if value < 1:
-        raise ValueError(f"{value=} must be >= 1")
-    
-    return True
 # [End of File material.py]

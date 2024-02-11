@@ -36,6 +36,8 @@ def valid_material():
 def test_board_invalid(invalid_name, valid_dimensions, valid_material):
     width, height, thickness = valid_dimensions
     
+    next_id = Material._next_id 
+
     with pytest.raises(ValueError):
         b = Board(invalid_name, width, height, thickness, valid_material)  # Invalid name
 
@@ -65,6 +67,6 @@ def test_board_invalid(invalid_name, valid_dimensions, valid_material):
     assert b is not None
     assert isinstance(b, Board)
     assert isinstance(b, Material)
-    assert b.id == 1
+    assert b.id == next_id
     assert b.name == "Test 1 - valid"
     

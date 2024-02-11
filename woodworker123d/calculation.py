@@ -94,6 +94,39 @@ def evaluate_length(value: float) -> bool:
     
     return True 
 
+def evaluate_name(value: str) -> bool:
+    """evaluate if a name is valid
+
+    Args:
+        value (str): name to evaluate
+
+    Returns:
+        bool: True if the name is valid
+    """
+    if not value:
+        raise ValueError(f"{value=} must not be empty")
+    
+    if type(value) != str:
+        raise ValueError(f"{value=} must be a string")
+    
+    if len(value) < 1:
+        raise ValueError(f"{value=} must be >= 1 characters")
+
+    return True
+        
+def evaluate_count(value: int) -> bool:
+    """evaluate if a count is valid
+
+    Args:
+        value (int): count to evaluate
+
+    Returns:
+        bool: True if the count is valid
+    """
+    if value < 1:
+        raise ValueError(f"{value=} must be >= 1")
+    
+    return True
 
 def evaluate_thickness(value: float, width: float, height: float) -> bool:
     """evaluate if a thickness is valid

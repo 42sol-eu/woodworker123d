@@ -23,8 +23,10 @@ def test_material_creation(sample_material_data):
     assert material.unit == unit
 
 def test_material_generate_id():
-    assert Material.generate_id() == 1
-    assert Material.generate_id() == 2
+    
+    next_id = Material._next_id
+    assert Material.generate_id() == next_id
+    assert Material.generate_id() == next_id + 1
 
 def test_material_invalid_name(invalid_name_material_data):
     name, count, unit = invalid_name_material_data
