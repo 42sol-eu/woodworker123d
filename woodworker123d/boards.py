@@ -8,11 +8,16 @@ dates = "2024-02-11"
 authors = "felix@42sol.eu"
 dates = "2024-02-11"
 """
-
 # [Imports]
+import logging                  #!md| [see docs](https://docs.python.org/3/library/logging.html)
+from logging import DEBUG, INFO, WARNING, ERROR, CRITICAL
+logging.basicConfig(level=DEBUG)
+
+#---
 from .common import UnitEnum, get_base_unit
 from .calculation import evaluate_length, evaluate_thickness 
 from .material import Material
+
 
 # [Types]
 
@@ -35,6 +40,7 @@ class Board(Material):
         self.width = width
         self.height = height
         self.thickness = thickness
+        self.material = material
 
 
     def __str__(self):

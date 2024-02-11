@@ -64,6 +64,19 @@ def convert_to_radians(angle_in_degrees: float) -> float:
 
     return angle_in_radians
 
+def evaluate_number(value: float) -> bool:
+    """evaluate if a number is valid
+
+    Args:
+        value (float): number to evaluate
+
+    Returns:
+        bool: True if the number is valid
+    """
+    if not isinstance(value, (int, float)):
+        raise ValueError(f"{value=} must be a number")
+
+    return True
 
 def evaluate_length(value: float) -> bool:
     """evaluate if a length is valid
@@ -74,6 +87,8 @@ def evaluate_length(value: float) -> bool:
     Returns:
         bool: True if the length is valid
     """
+    evaluate_number(value)
+
     if value <= g_min_length:
         raise ValueError(f"{value=} must be >= {g_min_length}")
     
@@ -89,6 +104,7 @@ def evaluate_thickness(value: float, width: float, height: float) -> bool:
     Returns:
         bool: True if the length is valid
     """
+    evaluate_number(value)
 
     if value < g_min_thickness:
         raise ValueError(f"{value=} must be >= {g_min_thickness}")
@@ -116,7 +132,7 @@ def calculate_top_length_with_angle( plank_length : float, angle : float, plank_
         float: _description_
     """
 
-    # [calculate_top_length_with_angle: Parameter Check]
+    # [calculate_top_length_with_angle: Parametric Check]
     if plank_length <= g_min_length:
         raise ValueError(f"{plank_length=} must be >= {g_min_length}")
     if angle < g_min_angle_top:

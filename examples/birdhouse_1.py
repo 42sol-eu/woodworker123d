@@ -13,7 +13,7 @@ import woodworker123d as ww
 from math import sin, cos
 # [Types]
 
-# [Parameters]
+# [Parametrics]
 p_thickness = 18
 
 p_roof_depth = 230

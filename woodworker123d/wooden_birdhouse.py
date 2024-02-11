@@ -17,7 +17,7 @@ from .common import UnitEnum, get_base_unit
 
 from .board import Board
 
-# [Parameters]
+# [Parametrics]
 P_wood_plates_file = "wood_plates.toml"
 P_wood_material = "material.toml"
 

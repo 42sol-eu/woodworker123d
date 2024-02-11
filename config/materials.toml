@@ -11,7 +11,7 @@ languages = {"de.DE" = "German/Deutsch", "fr.FR" = "French/Français", "it.IT" =
 """
 #TODO: check  density, color, texture, etc.
 
-# Materials with parameters
+# Materials with parametrics
 [[materials.types]]
 name = "beech"
 density = 0.65

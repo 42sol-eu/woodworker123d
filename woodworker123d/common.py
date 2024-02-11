@@ -18,7 +18,7 @@ class UnitEnum(Enum):
     metric: str = "mm"
     imperial: str = "inch"
 
-# [Parameters]
+# [Parametrics]
 
 p_default_unit = UnitEnum.metric
 

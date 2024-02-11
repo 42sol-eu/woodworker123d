@@ -1,13 +1,15 @@
 
 # [Imports]
+# [Imports]
+import logging                  #!md| [see docs](https://docs.python.org/3/library/logging.html)
+from logging import DEBUG, INFO, WARNING, ERROR, CRITICAL
+logging.basicConfig(level=DEBUG)
+
 from dataclasses import dataclass
 #----
 from .common import UnitEnum, get_base_unit
 
 # [Classes]
-# Q: how to add a dict in a dataclass?
-# A: add a dict as a parameter
-
 
 @dataclass
 class Material:
@@ -20,10 +22,16 @@ class Material:
     _next_id = 1
 
     def __init__(self, name : str, count : int = 1, unit : UnitEnum = get_base_unit()):
+        evaluate_name(name)
+        evaluate_count(count)
+
         self.id = Material.generate_id()
+
         self.name = name
         self.count = count
         self.unit = unit
+
+        logging.debug(f"Material {self.id=} created.")
 
     @classmethod
     def generate_id(cls) -> int:
@@ -58,3 +66,40 @@ class MaterialsList(list):
             super().append(item)
         else:
             raise ValueError(f"Item {item} is not a Material")
+        
+# [Functions]
+
+def evaluate_name(value: str) -> bool:
+    """evaluate if a name is valid
+
+    Args:
+        value (str): name to evaluate
+
+    Returns:
+        bool: True if the name is valid
+    """
+    if not value:
+        raise ValueError(f"{value=} must not be empty")
+    
+    if type(value) != str:
+        raise ValueError(f"{value=} must be a string")
+    
+    if len(value) < 1:
+        raise ValueError(f"{value=} must be >= 1 characters")
+
+    return True
+        
+def evaluate_count(value: int) -> bool:
+    """evaluate if a count is valid
+
+    Args:
+        value (int): count to evaluate
+
+    Returns:
+        bool: True if the count is valid
+    """
+    if value < 1:
+        raise ValueError(f"{value=} must be >= 1")
+    
+    return True
+# [End of File material.py]
