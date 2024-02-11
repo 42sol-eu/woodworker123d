@@ -5,22 +5,34 @@ from dataclasses import dataclass
 from .common import UnitEnum, get_base_unit
 
 # [Classes]
+# Q: how to add a dict in a dataclass?
+# A: add a dict as a parameter
+
 
 @dataclass
 class Material:
-    id: str = ""
+    id: int = 0
     name: str = ""
     count: int = 0
-    data: dict = {}
-    unit: UnitEnum = UnitEnum.metric
+    unit: UnitEnum = get_base_unit()
 
-    def __init__(self, id : str, name : str, count : int = 1, data : dict = {}, unit : UnitEnum = get_base_unit()):
-        self.id = id
+    # Class variable to keep track of the next available ID
+    _next_id = 1
+
+    def __init__(self, name : str, count : int = 1, unit : UnitEnum = get_base_unit()):
+        self.id = Material.generate_id()
         self.name = name
         self.count = count
-        self.data = data
         self.unit = unit
 
+    @classmethod
+    def generate_id(cls) -> int:
+        """
+        Generate a new ID starting from 1.
+        """
+        new_id = cls._next_id
+        cls._next_id += 1
+        return new_id
 # TODO: add a class Material -> Base Class for Boards
 
 

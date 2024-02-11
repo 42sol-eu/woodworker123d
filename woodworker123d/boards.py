@@ -10,22 +10,32 @@ dates = "2024-02-11"
 """
 
 # [Imports]
-from .common import UnitEnum
+from .common import UnitEnum, get_base_unit
+from .calculation import evaluate_length, evaluate_thickness 
+from .material import Material
 
 # [Types]
 
 # [Classes]
 # TODO: is Board a @Dataclass
-class Board:
+class Board(Material):
     """A board of wood
     """
-    id: int
-    name: str
-    width: float
-    height: float
-    thickness: float
-    unit: UnitEnum
-    material: str
+    _width: float
+    _height: float
+    _thickness: float
+    _material: str
+
+    def __init__(self, name: str, width: float, height: float, thickness: float, material: str, unit: UnitEnum = get_base_unit()):
+        evaluate_length(width)
+        evaluate_length(height)
+        evaluate_thickness(thickness, width, height)
+        
+        super().__init__(name, count=1, unit=unit)
+        self.width = width
+        self.height = height
+        self.thickness = thickness
+
 
     def __str__(self):
         return f"- plate {self.id}: {self.name} of {self.material} {self.width} x {self.height} {self.unit}, thick={self.thickness} {self.unit} "
@@ -36,51 +46,39 @@ class Board:
 
     @property
     def material(self):
-        return self.material
+        return self._material
 
     @material.setter
     def material(self, value):
-        self.material = value
-
-    @property
-    def name(self):
-        return self.name
-    
-    @name.setter
-    def name(self, value):
-        self.name = value
+        self._material = value
 
     @property
     def width(self):
-        return self.width
+        return self._width
 
     @width.setter
     def width(self, value):
-        self.width = value
+        evaluate_length(value)
+        self._width = value
     
     @property
     def height(self):
-        return self.height
+        return self._height
     
     @height.setter
     def height(self, value):
-        self.height = value
+        evaluate_length(value)
+        self._height = value
 
-    @property
-    def depth(self):
-        return self.depth
-    
-    @depth.setter
-    def depth(self, value):
-        self.depth = value
 
     @property
     def thickness(self):
-        return self.thickness
+        return self._thickness
     
     @thickness.setter
     def thickness(self, value):
-        self.thickness = value
+        evaluate_thickness(value, self._width, self._height)
+        self._thickness = value
     
     @property
     def area(self):

@@ -1,7 +1,9 @@
 import pytest
 from math import pi, cos, sin
 
-from woodworker123d import calculate_top_length_with_angle, convert_to_degree, convert_to_radians
+from woodworker123d import calculate_top_length_with_angle, convert_to_degree, convert_to_radians, evaluate_length, evaluate_thickness
+
+# [angle calculation]
 
 def test_calculate_top_length_with_angle():
     plank_length = 10.0
@@ -52,7 +54,7 @@ def test_calculate_top_length_with_angle_invalid_thickness():
     calculate_top_length_with_angle(plank_length, angle, plank_thickness)
 
 
-#---
+# [Convert]
 
 def test_convert_to_degree():
     radians_angles = [0, pi / 4, pi / 2, 3 * pi / 4, pi]
@@ -75,3 +77,46 @@ def test_convert_to_degree_and_back():
     
     for deg in degrees:
         assert convert_to_radians(convert_to_degree(deg)) == pytest.approx(deg)
+
+
+
+# [evaluate]
+
+# Constants used in the functions (replace with actual values)
+from woodworker123d.calculation import g_min_length, g_min_thickness, g_max_thickness_coefficient
+
+
+# Test cases for evaluate_length
+@pytest.mark.parametrize("value", [
+    0.1,  # Minimum valid value
+    1,  # Value greater than minimum
+    5.5,  # Arbitrary valid value
+])
+def test_evaluate_length_valid(value):
+    assert evaluate_length(value) == True
+
+@pytest.mark.parametrize("value", [
+    -1,  # Negative value
+    -5.5,  # Negative value
+    g_min_length - 0.1,  # Value just below minimum
+])
+def test_evaluate_length_invalid(value):
+    with pytest.raises(ValueError):
+        evaluate_length(value)
+
+# Test cases for evaluate_thickness
+@pytest.mark.parametrize("value, width, height", [
+    (1, 10, 2),  # Arbitrary valid value
+    (0.5, 10, 1),  # Value less than maximum based on width and height
+])
+def test_evaluate_thickness_valid(value, width, height):
+    assert evaluate_thickness(value, width, height) == True
+
+@pytest.mark.parametrize("value, width, height", [
+    (-1, 2, 2),  # Negative value
+    (5, 2, 1),  # Value greater than maximum based on width and height
+    (2, 1, 5),  # Value greater than maximum based on width and height
+])
+def test_evaluate_thickness_invalid(value, width, height):
+    with pytest.raises(ValueError):
+        evaluate_thickness(value, width, height)

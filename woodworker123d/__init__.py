@@ -10,8 +10,8 @@ dates: "2024-02-11"
 """
 # [Imports]
 from .common import UnitEnum, get_base_unit, set_default_unit
-from .calculation import calculate_top_length_with_angle, convert_to_degree, convert_to_radians
-
+from .calculation import calculate_top_length_with_angle, convert_to_degree, convert_to_radians, evaluate_length, evaluate_thickness
+from .material import Material
 from .boards import Board
 # from .wooden_birdhouse import Birdhouse
 # [End of File __init__.py]

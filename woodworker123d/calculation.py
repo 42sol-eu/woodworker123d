@@ -47,6 +47,7 @@ def convert_to_degree(angle_in_radians: float) -> float:
     return angle_in_degrees
 
 
+ 
 def convert_to_radians(angle_in_degrees: float) -> float:
     """Converts an angle from degrees to radians.
 
@@ -63,6 +64,40 @@ def convert_to_radians(angle_in_degrees: float) -> float:
 
     return angle_in_radians
 
+
+def evaluate_length(value: float) -> bool:
+    """evaluate if a length is valid
+
+    Args:
+        value (float): length to evaluate
+
+    Returns:
+        bool: True if the length is valid
+    """
+    if value <= g_min_length:
+        raise ValueError(f"{value=} must be >= {g_min_length}")
+    
+    return True 
+
+
+def evaluate_thickness(value: float, width: float, height: float) -> bool:
+    """evaluate if a thickness is valid
+
+    Args:
+        value (float): length to evaluate
+
+    Returns:
+        bool: True if the length is valid
+    """
+
+    if value < g_min_thickness:
+        raise ValueError(f"{value=} must be >= {g_min_thickness}")
+    
+    max_thickness = max(width,height) / g_max_thickness_coefficient
+    if value > max_thickness:
+        raise ValueError(f"{value=} must be <= {max_thickness} (depending on the {max(width,height)})")
+
+    return True 
 
 def calculate_top_length_with_angle( plank_length : float, angle : float, plank_thickness : float) -> float:
     """calculate how a planks length is if it is put in an angle.
@@ -89,10 +124,10 @@ def calculate_top_length_with_angle( plank_length : float, angle : float, plank_
     if angle > g_max_angle_top:
         raise ValueError(f"{angle=} must be bigger than {g_max_angle_top}")
     if plank_thickness < g_min_thickness:
-        raise ValueError(f"{plank_thickness=} must be > {g_min_thickness}")
+        raise ValueError(f"{plank_thickness=} must be >= {g_min_thickness}")
     max_thickness = plank_length / g_max_thickness_coefficient
     if plank_thickness > max_thickness:
-        raise ValueError(f"{plank_thickness=} must be < {max_thickness} (depending on the plank_length)")
+        raise ValueError(f"{plank_thickness=} must be <= {max_thickness} (depending on the plank_length)")
     
 
     length_with_angle = plank_length * cos(angle)
