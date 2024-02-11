@@ -1,0 +1,175 @@
+docs = """
+---toml
+file-name = materials.toml
+file-uuid = 0f1fef4d-8c25-4a8e-b02d-07422395117f
+project-name = woodworker123d
+project-uuid = ff31d696-909f-4692-bfd8-8a1cd13344e3
+authors = ["felix@42sol.eu", ]
+dates = {create= 2024-02-11, last_updtae= 2024-02-11}
+version = "2024.01.00"
+languages = {"de.DE" = "German/Deutsch", "fr.FR" = "French/Français", "it.IT" = "Italian/Italiano", "sv.SE" = "Swedish/Svenska"}
+"""
+#TODO: check  density, color, texture, etc.
+
+# Materials with parameters
+[[materials.types]]
+name = "beech"
+density = 0.65
+color = "light brown"
+texture = "smooth"
+
+[[materials.types]]
+name = "oak"
+density = 0.7
+color = "dark brown"
+texture = "rough"
+
+[[materials.types]]
+name = "birch"
+density = 0.6
+color = "light brown"
+texture = "fine grain"
+
+[[materials.types]]
+name = "spruce"
+density = 0.45
+color = "light brown"
+texture = "rough"
+
+[[materials.types]]
+name = "pine"
+density = 0.5
+color = "yellow"
+texture = "rough"
+
+[[materials.types]]
+name = "fir"
+density = 0.4
+color = "pale brown"
+texture = "rough"
+
+[[materials.types]]
+name = "willow"
+density = 0.3
+color = "pale green"
+texture = "smooth"
+
+[[materials.types]]
+name = "alder"
+density = 0.4
+color = "light brown"
+texture = "rough"
+
+[[materials.types]]
+name = "ash"
+density = 0.7
+color = "pale yellow"
+texture = "fine grain"
+
+[[materials.types]]
+name = "cherry"
+density = 0.65
+color = "reddish brown"
+texture = "smooth"
+
+[[materials.types]]
+name = "larch"
+density = 0.6
+color = "pale brown"
+texture = "rough"
+
+[[materials.types]]
+name = "walnut"
+density = 0.6
+color = "dark brown"
+texture = "smooth"
+
+[[materials.types]]
+name = "poplar"
+density = 0.4
+color = "pale yellow"
+texture = "smooth"
+
+[[materials.types]]
+name = "plane"
+density = 0.6
+color = "light brown"
+texture = "smooth"
+
+[[materials.types]]
+name = "elm"
+density = 0.7
+color = "light brown"
+texture = "rough"
+
+[[materials.types]]
+name = "cedar"
+density = 0.35
+color = "reddish brown"
+texture = "smooth"
+
+[[materials.types]]
+name = "chestnut"
+density = 0.6
+color = "dark brown"
+texture = "rough"
+
+[[materials.types]]
+name = "mahogany"
+density = 0.75
+color = "reddish brown"
+texture = "fine grain"
+
+[[materials.types]]
+name = "teak"
+density = 0.7
+color = "golden brown"
+texture = "fine grain"
+
+[[materials.types]]
+name = "cypress"
+density = 0.5
+color = "pale yellow"
+texture = "rough"
+
+[[materials.types]]
+name = "eucalyptus"
+density = 0.6
+color = "pale brown"
+texture = "rough"
+
+[[materials.types]]
+name = "acacia"
+density = 0.8
+color = "reddish brown"
+texture = "fine grain"
+
+
+# Index with only English names and translations
+[[translations]]
+english_name = "beech"
+translations = {
+   "de.DE" = "Buche",
+   "fr.FR" = "Hêtre",
+   "it.IT" = "Faggio",
+   "sv.SE" = "Bok"
+}
+
+[[translations]]
+english_name = "oak"
+translations = {
+   "de.DE" = "Eiche",
+   "fr.FR" = "Chêne",
+   "it.IT" = "Quercia",
+   "sv.SE" = "Ek"
+}
+
+[[translations]]
+english_name = "birch"
+translations = {
+   "de.DE" = "Birke",
+   "fr.FR" = "Bouleau",
+   "it.IT" = "Betulla",
+   "sv.SE" = "Björk"
+}
+

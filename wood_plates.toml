@@ -1,0 +1,61 @@
+docs ="""
+---toml
+file-name = wood_plates.toml
+file-uuid = 49bd8dd2-e82c-443c-a172-d7a2a06a2271
+project-name = woodworker123d
+project-uuid = ff31d696-909f-4692-bfd8-8a1cd13344e3
+authors = ["felix@42sol.eu", ]
+dates = {create= 2024-02-11, last_updtae= 2024-02-11}
+version =  "2024.01.00"
+language = "en"
+unit = "mm"
+"""
+# Table of plates
+[[plates]]
+id = 1
+name = "Plate 1"
+width = 80
+height = 20
+thickness = 1.8
+
+[[plates]]
+id = 2
+name = "Plate 2"
+width = 80
+height = 30
+thickness = 1.8
+
+[[plates]]
+id = 3
+name = "Plate 3"
+width = 120
+height = 20
+thickness = 1.9
+
+[[plates]]
+id = 4  
+name = "Plate 4"
+width = 120
+height = 40
+thickness = 1.8
+
+[[plates]]
+id = 5 
+name = "Plate 5"
+width = 200
+height = 20
+thickness = 1.8
+
+[[plates]]
+id = 6
+name = "Plate 6"
+width = 200
+height = 30
+thickness = 1.8
+
+[[plates]]
+id = 7
+name = "Plate 7"
+width = 200
+height = 40
+thickness = 1.8
