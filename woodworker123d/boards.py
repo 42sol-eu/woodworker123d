@@ -26,12 +26,19 @@ from .material import Material
 class Board(Material):
     """A board of wood
     """
+    _default_material : str = "beech" 
+    _default_thickness : float = 10.0
+
     _width: float
     _height: float
     _thickness: float
     _material: str
 
-    def __init__(self, name: str, width: float, height: float, thickness: float, material: str, unit: UnitEnum = get_base_unit()):
+    def __init__(self, name: str, width: float, height: float, thickness: float = None, material: str = None, unit: UnitEnum = get_base_unit()):
+        
+        if thickness is None:
+            thickness = Board._default_thickness
+        
         evaluate_length(width)
         evaluate_length(height)
         evaluate_thickness(thickness, width, height)
@@ -40,7 +47,8 @@ class Board(Material):
         self.width = width
         self.height = height
         self.thickness = thickness
-        self.material = material
+        if material is None:
+            self.material = Board._default_material
 
 
     def __str__(self):
@@ -99,7 +107,33 @@ class Board(Material):
         return self.volume * self.material.density
 
 
-    
+    @classmethod
+    def set_default_material(cls, value) :
+        """
+        Generate a new ID starting from 1.
+        """
+        cls._default_material = value
+
+    @classmethod
+    def set_default_thickness(cls, value) :
+        """
+        Generate a new ID starting from 1.
+        """
+        cls._default_thickness = value
+
+    @classmethod
+    def get_default_material(cls) -> str:
+        """
+        Generate a new ID starting from 1.
+        """
+        return cls._default_material
+
+    @classmethod
+    def get_default_thickness(cls) -> float:
+        """
+        Generate a new ID starting from 1.
+        """
+        return cls._default_thickness
 
 # [Functions]
 

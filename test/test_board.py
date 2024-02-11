@@ -3,20 +3,53 @@ from enum import Enum
 
 from woodworker123d import Board, Material
 
-def test_board():
-    b = Board("Test 1 - valid", 10, 20, 1, "oak")
+@pytest.fixture
+def valid_dimensions():
+    return 20, 5, 1
+
+
+@pytest.fixture
+def default_material():
+    return "birch"
+
+@pytest.fixture
+def another_material():
+    return "spruce"
+
+def test_board(valid_dimensions, default_material, another_material):
+
+    width, height, thickness = valid_dimensions
+    
+
+    b = Board("Test 1 - valid", height, width, thickness, default_material)
     assert b is not None
     assert isinstance(b, Board)
     assert isinstance(b, Material)
     assert b.id == 1
     assert b.name == "Test 1 - valid"
 
-    b = Board("Test 2 - valid", 5, 20, 1, "spruce")
+    b = Board("Test 2 - valid", width, height, thickness, another_material)
     assert b is not None
     assert isinstance(b, Board)
     assert isinstance(b, Material)
     assert b.id == 2
     assert b.name == "Test 2 - valid"
+
+    
+    Board.set_default_material(default_material)
+    b = Board("Test 3 - valid", width, height, thickness)
+    assert b is not None
+    assert isinstance(b, Board)
+    assert b.material == default_material
+
+    Board.set_default_thickness(thickness)
+    b = Board("Test 3 - valid", width, height)
+    assert b is not None
+    assert isinstance(b, Board)
+    assert b.material == default_material
+    assert b.thickness == thickness
+    assert Board.get_default_material() == default_material
+    assert Board.get_default_thickness() == thickness
 
 
 # Define fixtures for the values used in the test cases
@@ -24,9 +57,6 @@ def test_board():
 def invalid_name():
     return ""
 
-@pytest.fixture
-def valid_dimensions():
-    return 10, 20, 1
 
 @pytest.fixture
 def valid_material():
