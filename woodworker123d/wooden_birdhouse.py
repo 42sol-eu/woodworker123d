@@ -12,8 +12,10 @@ from pathlib import Path                            #!md|[see documentation](htt
 from dataclasses import dataclass                   #!md|[see documentation](https://docs.python.org/3/library/dataclasses.html)
 from enum import Enum                               #!md|[see documentation](https://docs.python.org/3/library/enum.html)
 #---
-import common
-from planks import Plank, PlanksList
+from . import common
+from .common import UnitEnum, get_base_unit
+
+from .board import Board
 
 # [Parameters]
 P_wood_plates_file = "wood_plates.toml"
@@ -43,7 +45,7 @@ class Birdhouse:
                  depth: float, 
                  thickness: float, 
                  material: str, 
-                 unit : common.UnitEnum = common.UnitEnum.metric  ):
+                 unit : common.UnitEnum = get_base_unit()  ):
         self.width = width
         self.height = height
         self.depth = depth
@@ -77,8 +79,8 @@ class Birdhouse:
             material = self.material
         if thickness == 0:
             thickness = self.thickness
-        the_plank = Plank(name, width, height, thickness, material, unit=self.unit)
-        self.plates.append(the_plank)
+        the_board = Board(name, width, height, thickness, material, unit=self.unit)
+        self.plates.append(the_board)
 
 # [Functions]
 

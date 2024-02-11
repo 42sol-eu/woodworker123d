@@ -12,15 +12,26 @@ dates = "current_iso_date"
 from dataclasses import dataclass                   #!md|[see documentation](https://docs.python.org/3/library/dataclasses.html)
 from enum import Enum                               #!md|[see documentation](https://docs.python.org/3/library/enum.html)
 
+
 # [Types]
 class UnitEnum(Enum):
     metric: str = "mm"
     imperial: str = "inch"
 
+# [Parameters]
+
+p_default_unit = UnitEnum.metric
 
 # [Classes]
 
 # [Functions]
+
+def set_default_unit(unit : UnitEnum):
+    global p_default_unit
+    p_default_unit = unit
+
+def get_base_unit() -> UnitEnum:
+    return p_default_unit
 
 # [Execution]
 

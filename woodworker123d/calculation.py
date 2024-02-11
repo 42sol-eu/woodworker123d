@@ -9,9 +9,14 @@ dates = "current_iso_date"
 """
 
 # [Imports]
+import logging                  #!md| [see docs](https://docs.python.org/3/library/logging.html)
+from logging import DEBUG, INFO, WARNING, ERROR, CRITICAL
 from math import *              #!md| [see docs](https://https://docs.python.org/3/library/math.html)
 #----
-import common
+from . import common
+
+logging.basicConfig(level=DEBUG)
+
 # [Types]
 
 # [Constants]
@@ -22,6 +27,42 @@ g_min_length = 0.0
 g_min_thickness = 0.1
 g_max_thickness_coefficient = 10.0
 # [Classes]
+
+from math import degrees, radians
+
+def convert_to_degree(angle_in_radians: float) -> float:
+    """Converts an angle from radians to degrees.
+
+    Args:
+        angle_in_radians (float): Angle in radians.
+
+    Returns:
+        float: Angle in degrees.
+    """
+    # [convert_to_degree: Debug Log]
+    logging.debug(f"Converting {angle_in_radians=} to degrees.")
+
+    angle_in_degrees = degrees(angle_in_radians)
+
+    return angle_in_degrees
+
+
+def convert_to_radians(angle_in_degrees: float) -> float:
+    """Converts an angle from degrees to radians.
+
+    Args:
+        angle_in_degrees (float): Angle in degrees.
+
+    Returns:
+        float: Angle in radians.
+    """
+    # [convert_to_radians: Debug Log]
+    logging.debug(f"Converting {angle_in_degrees=} to radians.")
+
+    angle_in_radians = radians(angle_in_degrees)
+
+    return angle_in_radians
+
 
 def calculate_top_length_with_angle( plank_length : float, angle : float, plank_thickness : float) -> float:
     """calculate how a planks length is if it is put in an angle.
@@ -57,6 +98,7 @@ def calculate_top_length_with_angle( plank_length : float, angle : float, plank_
     length_with_angle = plank_length * cos(angle)
     thickness_with_angle = plank_thickness * sin(angle)
     full_length = length_with_angle + thickness_with_angle
+    logging.debug(f"calculate_top_length_with_angle: {plank_length=} {angle=} {plank_thickness=} -> {full_length=}")
 
     return full_length
 

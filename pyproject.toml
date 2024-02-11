@@ -14,8 +14,10 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-build123d = "^0.3.0"
-partcad = "^0.3.84"
+## build123d has the CadQuery-OCP issue ... need to investigate how to solve it under Mac Mx
+## !!! ocp = { git = "https://github.com/CadQuery/OCP", branch = "master" }
+## build123d = "^0.3.0"
+## partcad = "^0.3.84"
 toml = "^0.10.2"
 
 
