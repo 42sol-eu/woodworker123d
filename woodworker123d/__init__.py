@@ -11,7 +11,7 @@ dates: "2024-02-11"
 # [Imports]
 from .common import UnitEnum, get_base_unit, set_default_unit
 from .calculation import *
-from .material import Material
+from .material import Material, MaterialsList
 from .boards import Board
 # from .wooden_birdhouse import Birdhouse
 

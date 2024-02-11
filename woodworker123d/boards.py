@@ -52,10 +52,10 @@ class Board(Material):
 
 
     def __str__(self):
-        return f"- plate {self.id}: {self.name} of {self.material} {self.width} x {self.height} {self.unit}, thick={self.thickness} {self.unit} "
+        return f"- {self.count}x {self.material}-board [{self.id}] {self.name} of {self.material} {self.width} x {self.height} {self.unit}, thick={self.thickness}"
 
     def __repr__(self):
-        return f"Plate {self.id=}: {self.name=}, {self.unit=}, {self.material=} {self.width=} x {self.height=} {self.unit}, {self.thickness=}"
+        return f"Board {self.id=}: {self.name=}, {self.unit=}, {self.material=} {self.width=} x {self.height=}, {self.thickness=}"
 
 
     @property

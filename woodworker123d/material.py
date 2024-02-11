@@ -34,6 +34,14 @@ class Material:
 
         logging.debug(f"Material {self.id=} created.")
 
+    def __str__(self):
+        return f"- {self.count}x material [{self.id}] {self.name}"
+
+    def __repr__(self):
+        return f"Material {self.id=}: {self.name=}, {self.unit=}, {self.count=}"
+
+
+
     @classmethod
     def generate_id(cls) -> int:
         """
@@ -62,7 +70,7 @@ class MaterialsList(list):
     
         return output
     
-    def __append__(self, item):
+    def __append__(self, item : Material):
         if isinstance(item, Material):
             super().append(item)
         else:
